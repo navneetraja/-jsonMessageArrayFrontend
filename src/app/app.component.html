@@ -1,0 +1,81 @@
+<!-- <p>{{jsonmessageArray | json}}</p> -->
+<div class="col-md-3" style="float: right;">
+  <form class="text-center border border-light p-5">
+    <p class="h4 mb-4">Enter Interval</p>
+    <input type="number" name="sec" class="form-control mb-4" placeholder="Interval" [(ngModel)]="secCount">
+    <button class="btn btn-info btn-block" type="button" (click)="refresh()">Refresh</button>
+  </form>
+</div>
+
+
+<div class="container">
+  <div *ngFor="let message of jsonmessageArray">
+    <div *ngFor="let mess of message">
+      <div *ngFor="let m of mess; index as i">
+        <p *ngIf="i==0">Date : {{m.recordedTs | date:'medium'}}
+        </p>
+        <p>{{ m | json}}</p>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
+
+
+<div *ngFor="let message of jsonmessageArray">
+
+  <div class="container" *ngFor="let mess of message;">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>code</th>
+          <th>measurementId</th>
+          <th>value</th>
+          <th>visitId</th>
+          <th>recordedTs</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let m of mess; index as i">
+          <td>{{ m.id }}</td>
+          <td>{{ m.code }}</td>
+          <td>{{ m.measurementId }}</td>
+          <td>{{ m.value }}</td>
+          <td>{{ m.visitId }}</td>
+          <td>{{ m.recordedTs | date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+<tr></tr>
+
+<div *ngFor="let message of jsonmessageArray; first as isFirst">
+
+  <div class="container" *ngFor="let mess of message;">
+    <table class="table">
+      <thead *ngIf="isFirst">
+        <tr>
+          <th>id</th>
+          <th>code</th>
+          <th>measurementId</th>
+          <th>value</th>
+          <th>visitId</th>
+          <th>recordedTs</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let m of mess; index as i">
+          <td>{{ m.id }}</td>
+          <td>{{ m.code }}</td>
+          <td>{{ m.measurementId }}</td>
+          <td>{{ m.value }}</td>
+          <td>{{ m.visitId }}</td>
+          <td>{{ m.recordedTs | date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

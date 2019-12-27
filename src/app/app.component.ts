@@ -51,6 +51,7 @@ export class AppComponent {
   getMessage() {
     var path = "userinfo/amithget";
     this.http.get(`${environment.api_url}${path}`).subscribe(res => {
+      this.jsonmessageArray = [];
       console.log(res);
       for (let m of Object.values(res)) {
         for (let m1 of Object.values(JSON.parse(m.toString()))) {
